@@ -1,7 +1,11 @@
 **Project Title**: *Market Movement Analysis: Clustering & Forecasting Stock Price Behavior*
+
 **Dataset Chosen**: Stock Prices Dataset
+
 **Total Rows**: 497,472
+
 **Total Columns**: 7
+
 **File Type**: `.csv`
 
 ---
