@@ -1,8 +1,6 @@
-## 📁 Section 1: Data Cleaning & Preprocessing
+/* ## 📁 Section 1: Data Cleaning & Preprocessing */ 
 
-### 🧠 Project Context
-
-**Project Title**: *Market Movement Analysis: Clustering & Forecasting Stock Price Behavior*
+###**Project Title**: *Market Movement Analysis: Clustering & Forecasting Stock Price Behavior*
 **Dataset Chosen**: Stock Prices Dataset
 **Total Rows**: 497,472
 **Total Columns**: 7
@@ -105,7 +103,7 @@ volume        497472 non-null int64
 ```
 
 * **Memory usage**: 26.6 MB
-* **Cleaned dataset shape**: *(497,463, X)* after consistency validation
+* **Cleaned dataset shape**: *(497,463, 15)* after consistency validation
 
 ---
 
@@ -116,6 +114,3 @@ All major **data integrity checks** (nulls, types, anomalies) have been passed.
 Key **statistical features and time-aware fields** are now available for the next steps:
 **Exploratory Data Analysis, Clustering, and Time Series Forecasting.**
 
----
-
-Let me know when you’re ready for the **EDA section**, and I’ll write that just as crispy. Or I can format this into a clean `.docx` if you want it export-ready 🧾✨
