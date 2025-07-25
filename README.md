@@ -37,32 +37,35 @@ This dataset is ideal for:
 ### 2. Data Preprocessing
 
 **2.1 Data Loading and Initial Exploration**
+
 The dataset was loaded from a CSV file containing Stock data. The initial exploration revealed the following:
 
-**Dataset Shape:** The dataset contains 497472 rows and 7 columns.
-**Data Types:** The dataset includes both numerical and categorical features, such as Symbol, Close, and Volume.
-**Missing Values:** Initial checks showed missing values in columns Open, High, and Low.
-**Key Initial Statistics:**
-Total Records: 497472 rows
-Original Features: 7 columns 
-Missing Values: 27 cells
++ **Dataset Shape:** The dataset contains 497472 rows and 7 columns.
++ **Data Types:** The dataset includes both numerical and categorical features, such as Symbol, Close, and Volume.
++ **Missing Values:** Initial checks showed missing values in columns Open, High, and Low.
++ **Key Initial Statistics:**
+      - Total Records: 497472 rows
+      - Original Features: 7 columns 
+      - Missing Values: 27 cells
 
 **2.2 Handling Missing Values**
+
 Imputed or dropped depending on context.
 
 **2.3 Data Cleaning**
-**Date Formats:** Converted date to datetime64 to enable accurate time-based grouping and calculations.
-**Duplicates:** Checked: 0 duplicates found.
-**Sorted the dataset** by symbol and date to maintain temporal accuracy.
-**Price Consistency Validation**
-Ensured that each row met the rule:
- low ≤ close ≤ high
-9 rows eliminated for violating this rule:
-df = df[(df['low'] <= df['close']) & (df['close'] <= df['high'])]
 
-**Handling Outliers** No outliers were detected.
+- **Date Formats:** Converted date to datetime64 to enable accurate time-based grouping and calculations.
+- **Duplicates:** Checked: 0 duplicates found.
+- **Sorted the dataset** by symbol and date to maintain temporal accuracy.
+- **Price Consistency Validation**
+      Ensured that each row met the rule:
+      low ≤ close ≤ high. 
+      9 rows eliminated for violating this rule:
+      df = df[(df['low'] <= df['close']) & (df['close'] <= df['high'])]
+- **Handling Outliers** No outliers were detected.
 
 **2.4 Feature Engineering**
+
 New columns were added to enhance analysis, clustering, and forecasting:
 
 | Feature            | Description                                           |
@@ -77,47 +80,56 @@ New columns were added to enhance analysis, clustering, and forecasting:
 | `Daily_Return (%)` | Day-over-day return expressed as a percentage         |
 
 **Why Rolling Averages?**
-Helps smooth market noise to better spot trends,
-Makes visualizations more meaningful,
-Essential for comparing short-term (7-day) vs long-term (30-day) price behavior,
-Supports better segmentation and forecasting accuracy,
+
+- Helps smooth market noise to better spot trends,
+- Makes visualizations more meaningful,
+- Essential for comparing short-term (7-day) vs long-term (30-day) price behavior,
+- Supports better segmentation and forecasting accuracy,
 
 **2.5 Data Preparation Summary**
-Corrected initial issues in feature engineering:
-Recalculated MA7, Volatility, Lag_1_close, and Lag_7_volume
-Grouped data by symbol to generate rolling averages and volatility correctly.
-Cleaned up lag feature logic and verified consistency.
-Dropped all remaining nulls and duplicates after feature engineering.
-Scaled and normalized features as required for clustering input.
-The final cleaned dataset used for EDA had no missing values or duplicates in key engineered fields.
+
+- Corrected initial issues in feature engineering:
+- Recalculated MA7, Volatility, Lag_1_close, and Lag_7_volume
+- Grouped data by symbol to generate rolling averages and volatility correctly.
+- Cleaned up lag feature logic and verified consistency.
+- Dropped all remaining nulls and duplicates after feature engineering.
+- Scaled and normalized features as required for clustering input.
+- The final cleaned dataset used for EDA had no missing values or duplicates in key engineered fields.
 
 ---
 
 ### 3. Exploratory Data Analysis (EDA)
+
 **Objective:** Explore patterns, distributions, and relationships within the dataset to guide clustering and modeling decisions.
 
 **3.1 Feature Aggregation Strategy**
-To prepare for clustering:
-Aggregated engineered features per symbol to analyze stock behaviors holistically.
-Determined key clustering features using exploratory visuals:
-Pairplots for separation
-Distribution plots for skewness
-Correlation matrices
-Boxplots per symbol
+
+- To prepare for clustering:
+- Aggregated engineered features per symbol to analyze stock behaviors holistically.
+- Determined key clustering features using exploratory visuals:
+- Pairplots for separation
+- Distribution plots for skewness
+- Correlation matrices
+- Boxplots per symbol
 
 **3.2 Univariate Analysis**
-Close with values ranging between 0 and 400
-MA7 with values ranging between 0 and 250
-Volatility with values ranging between 0 and 10
-Daily_Return with values ranging between -0.1 to +0.1
-Volume with values ranging between 0 and 4 (in millions)
+
+- Close with values ranging between 0 and 400
+- MA7 with values ranging between 0 and 250
+- Volatility with values ranging between 0 and 10
+- Daily_Return with values ranging between -0.1 to +0.1
+- Volume with values ranging between 0 and 4 (in millions)
 
 **3.3 Bivariate Analysis**
+
 Daily Return vs Volatility:
- A loose positive relationship was observed — more volatile stocks tend to swing harder on returns. Concentration is highest for daily returns between -0.4 and +0.4, and volatility under 80M.
+ - A loose positive relationship was observed — more volatile stocks tend to swing harder on returns.
+ - Concentration is highest for daily returns between -0.4 and +0.4, and volatility under 80M.
 
 **3.4 Correlation Matrix**
+
 **Key finding:**
+
 **Perfect positive correlations:** Close and MA7, these two variables move together and are likely redundant.
 **Strong positive correlations:** Close and Volatility, MA7 and Volatility. As one increases, the other tends
 to increase significantly — a strong signal.
@@ -126,19 +138,20 @@ to increase significantly — a strong signal.
 **Practically zero correlations:** MA7 and Daily_Return, Volatility and Daily_Return. These variables are completely unrelated.
 
 **3.5 Time Series Trends**
+
 Stocks show varied behavior over time; some, like AAP and AAPL, display smooth upward trends, while others, like AAL, show erratic movement.
 
 **3.6 Rolling Behavior Analysis**
+
 **Visualizing MA7 against volatility bands:**
-Highest trend values approached 200, lowest around 80
-Volatility bands revealed stability zones and spikes across time windows.
+- Highest trend values approached 200, lowest around 80
+- Volatility bands revealed stability zones and spikes across time windows.
 
 **3.7 Multivariate Pattern Detection**
+
 The pairplot reveals natural clustering tendencies, particularly between MA7, Volatility, and Daily Return.
 
 **3.8 Top Stocks by Movement & Trade Volume**
-**Most Volatile Stocks**
-
 
 |   Most Volatile Stocks   | Most Traded Stocks     |
 | -------------------------| -----------------------|
