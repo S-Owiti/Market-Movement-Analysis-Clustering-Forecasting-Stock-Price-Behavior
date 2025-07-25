@@ -130,12 +130,12 @@ Daily Return vs Volatility:
 
 **Key finding:**
 
-**Perfect positive correlations:** Close and MA7, these two variables move together and are likely redundant.
-**Strong positive correlations:** Close and Volatility, MA7 and Volatility. As one increases, the other tends
+- **Perfect positive correlations:** Close and MA7, these two variables move together and are likely redundant.
+- **Strong positive correlations:** Close and Volatility, MA7 and Volatility. As one increases, the other tends
 to increase significantly — a strong signal.
-**Weak positive correlations:** Close and Daily_Return. As one increases, the other tends to increase relatively — a weak signal.
-**Very weak negative correlations:** Close and volume, MA7 and volume, Volatility and volume, Daily_Return and volatility. A slight inverse relationship, but it's noise.
-**Practically zero correlations:** MA7 and Daily_Return, Volatility and Daily_Return. These variables are completely unrelated.
+- **Weak positive correlations:** Close and Daily_Return. As one increases, the other tends to increase relatively — a weak signal.
+- **Very weak negative correlations:** Close and volume, MA7 and volume, Volatility and volume, Daily_Return and volatility. A slight inverse relationship, but it's noise.
+- **Practically zero correlations:** MA7 and Daily_Return, Volatility and Daily_Return. These variables are completely unrelated.
 
 **3.5 Time Series Trends**
 
