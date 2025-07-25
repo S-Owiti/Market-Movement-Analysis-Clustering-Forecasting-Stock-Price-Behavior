@@ -19,11 +19,9 @@ This report documents the comprehensive analysis and predictive modeling conduct
 
 This dataset is ideal for:
 
-**Clustering stocks** by behavior (volatility, movement)
-
-**Time series forecasting** using price trends
-
-**Demonstrating real-world business insight** for investment strategy and market movement prediction
+- **Clustering stocks** by behavior (volatility, movement)
+- **Time series forecasting** using price trends
+- **Demonstrating real-world business insight** for investment strategy and market movement prediction
 
 **Data Workflow Layers:**
 
