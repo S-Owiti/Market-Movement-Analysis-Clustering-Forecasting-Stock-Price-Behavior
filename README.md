@@ -246,7 +246,7 @@ Prophet effectively captured cyclical behavior and sudden growth bursts in both 
 Using MAE and RMSE to assess model accuracy:
 
 | Stock   | MAE      |  RMSE     | Interpretation                                                         |
-|.........|..........|...........|........................................................................|
+|---------|----------|-----------|------------------------------------------------------------------------|
 | Stock_0 | 466.23   |  487.24   | High error due to unpredictable, volatile behavior (aggressive growth) |
 | Stock_1 | 24.74    |  26.78    | Significantly lower error — highly forecastable and stable             |
 
