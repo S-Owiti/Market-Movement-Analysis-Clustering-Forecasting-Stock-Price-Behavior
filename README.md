@@ -276,7 +276,7 @@ This project set out to explore, cluster, and forecast stock market behavior thr
 
  These clusters formed the foundation for behavior-aware forecasting strategies.
 
-**Time Series Forecasting**
+**4. Time Series Forecasting**
 
  Representative stocks from each cluster were selected for time-based modeling using ARIMA and Facebook Prophet. 
  **Results showed:**
@@ -285,7 +285,7 @@ This project set out to explore, cluster, and forecast stock market behavior thr
  
  This confirmed the importance of behavioral clustering before predictive modeling.
 
-**Project Impact**
+**5. Project Impact**
 
 This end-to-end analysis demonstrates how integrating unsupervised learning (clustering) with time series forecasting can enhance both interpretability and accuracy in financial data modeling. By understanding behavior first, we’re able to tailor forecasting strategies to stock personality, bridging analytics with decision-making.With the full project now complete, these insights can be extended into:
 - Portfolio simulations by cluster behavior
