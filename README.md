@@ -197,7 +197,7 @@ Both series were resampled to a monthly frequency to stabilize seasonal patterns
 The **Augmented Dickey-Fuller (ADF)** test was applied to assess stationarity:
 
 | Stock       | ADF Statistic   |  p-value  |
-|.............|.................|...........|
+|-------------|-----------------|-----------|
 | Stock_0     | -2.40           |  0.14     |
 | Stock_1     | -1.06           |  0.73     | 
 
