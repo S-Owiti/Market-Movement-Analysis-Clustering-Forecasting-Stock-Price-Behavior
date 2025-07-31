@@ -167,3 +167,129 @@ The pairplot reveals natural clustering tendencies, particularly between MA7, Vo
 | BLK       4.45           | INTC    27M            |
 
 Insight: PCLN leads in volatility by far, while BAC and AAPL dominate in trading volume, making them the perfect candidates for deeper behavioral clustering.
+
+---
+
+### 4. Time Series Forecasting
+
+The final analytical phase of the project involved building predictive models to forecast stock prices over time. One representative stock was selected from each behavioral cluster (as determined in the clustering phase) to capture their unique time-dependent dynamics:
+- Stock 0 → Cluster 0: Aggressive Growth
+- Stock 1 → Cluster 1: Low-Volatility Blue Chips
+
+**4.1 Time Series EDA**
+
+Each stock’s historical performance was analyzed visually and statistically:
+
+**🔹 Stock 0**
+- Opened at ~400 in Jan 2014, spiked to ~1200 in Jan 2018
+- Dipped below 400 in January 2015, with key volatility around January 2016, July, and Dec
+
+**🔹 Stock 1**
+- Rose from ~80 in Jan 2014 to ~180 in Jan 2018
+- Lowest dip observed below 50 in Feb 2014, with fluctuations primarily between 2015–2017
+
+Both series were resampled to a monthly frequency to stabilize seasonal patterns. Visual trend analysis identified:
+- Spikes in mid-year periods (especially July)
+- Dips typically occur around January or year-end
+
+**4.2 Stationarity Testing**
+
+The **Augmented Dickey-Fuller (ADF)** test was applied to assess stationarity:
+
+| Stock       | ADF Statistic   |  p-value  |
+|.............|.................|...........|
+| Stock_0     | -2.40           |  0.14     |
+| Stock_1     | -1.06           |  0.73     | 
+
+**➡ Observation:** Both time series were non-stationary (p > 0.05), necessitating differencing before ARIMA modeling.
+
+**4.3 Forecast Modeling**
+
+**🔸 ARIMA Model**
+
+A (1,1,1) ARIMA model was applied to each stock. 
+**Key model insights:**
+
+**Stock 0:**
++ Highly volatile with substantial noise
++ Model performance metrics:
+      - AIC: 154.45
+      - BIC: 157.99
+      - Skew: -4.00
+      - Kurtosis: 19.28 (heavy tails)
+
+**Stock 1:**
++ Smoother trend with better-behaved residuals
++ Model performance metrics:
+      - AIC: 12.87
+      - BIC: 16.40
+      - Skew: 4.17
+      - Kurtosis: 19.72
+
+**🔸 Prophet Model**
+
+Meta (Facebook) Prophet was applied for more flexible and visual forecasting. 
+**Key observations:**
+
+**Stock 0:**
+- Lowest dip: ~300 (Feb 2015)
+- Strong upward trend: ~580 (Feb 2017), peaking near 780 by early 2017
+
+**Stock 1:**
+- Lowest dip: ~105 (Jan 2016)
+- Peak: ~148 (Jan 2017)
+
+Prophet effectively captured cyclical behavior and sudden growth bursts in both stocks.
+
+**4.4 Forecast Accuracy Evaluation**
+
+Using MAE and RMSE to assess model accuracy:
+
+| Stock   | MAE      |  RMSE     | Interpretation                                                         |
+|.........|..........|...........|........................................................................|
+| Stock_0 | 466.23   |  487.24   | High error due to unpredictable, volatile behavior (aggressive growth) |
+| Stock_1 | 24.74    |  26.78    | Significantly lower error — highly forecastable and stable             |
+
+**➡ The results** reinforce the behavioral traits identified during clustering:
+- Cluster 0 stocks are difficult to forecast, volatile, and prone to spikes
+- Cluster 1 stocks are forecast-friendly and trend smoothly over time
+
+**5. Conclusion**
+
+This project set out to explore, cluster, and forecast stock market behavior through a full-cycle data science workflow — from raw data wrangling to strategic forecasting. Using historical stock price data, we developed a 360° view of market movement by engineering meaningful features, uncovering behavioral groupings, and building models to predict future trends.
+
+**🔹 Key Milestones:**
+
+**1. Data Cleaning & Feature Engineering**
+
+ Raw data was transformed through rolling averages, volatility calculations, and return features to better capture stock movement patterns over time.
+
+**2. Exploratory Data Analysis (EDA)**
+
+ EDA uncovered insights into price trends, feature distributions, inter-feature correlations, and temporal behavior. Stocks were seen to vary widely in risk, volatility, and performance, setting the stage for segmentation.
+
+**3. Clustering**
+
+ Using K-Means, stocks were clustered into two distinct groups:
+ - Cluster 0 – Aggressive Growth: High volatility, high returns, sharp price swings
+ - Cluster 1 – Low-Volatility Blue Chips: Stable, slow-moving, forecastable performers
+
+ These clusters formed the foundation for behavior-aware forecasting strategies.
+
+**Time Series Forecasting**
+
+ Representative stocks from each cluster were selected for time-based modeling using ARIMA and Facebook Prophet. 
+ **Results showed:**
+ - High forecast error for Cluster 0 stocks due to chaotic movement
+ - Strong forecast accuracy for Cluster 1 stocks with smooth, consistent patterns
+ 
+ This confirmed the importance of behavioral clustering before predictive modeling.
+
+**Project Impact**
+
+This end-to-end analysis demonstrates how integrating unsupervised learning (clustering) with time series forecasting can enhance both interpretability and accuracy in financial data modeling. By understanding behavior first, we’re able to tailor forecasting strategies to stock personality, bridging analytics with decision-making.With the full project now complete, these insights can be extended into:
+- Portfolio simulations by cluster behavior
+- Real-time monitoring dashboards (Power BI or Streamlit)
+- Scaling to include social sentiment + volume analysis for high-volatility stocks
+
+Time series forecasting confirmed the strategic validity of behavior-based clustering. While high-growth stocks present greater forecasting challenges, stable performers yield more reliable projections, providing a clear pathway for building tailored prediction models based on cluster characteristics.
